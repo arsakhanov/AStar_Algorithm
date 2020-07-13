@@ -1,12 +1,11 @@
 package ru.arsakhanov;
 
-/**
- * Класс описывает работу алгоритма А*
- */
-
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ * Класс описывает работу алгоритма А*
+ */
 
 public class AStar {
 
