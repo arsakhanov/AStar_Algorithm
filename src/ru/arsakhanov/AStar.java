@@ -1,7 +1,12 @@
 package ru.arsakhanov;
 
+/**
+ * Класс описывает работу алгоритма А*
+ */
+
 import java.util.Comparator;
 import java.util.PriorityQueue;
+
 
 public class AStar {
 
@@ -46,20 +51,41 @@ public class AStar {
         }
     }
 
+    /**
+     * добавление блока в сетку
+     * @param i в параметры передается индекс массива
+     * @param j в параметры передается индекс массива
+     */
     public void addBlockOnCell(int i, int j) {
         grid[i][j] = null;
     }
 
+    /**
+     * начальная точка пути
+     * @param i в параметр передается индекс массива
+     * @param j в параметр передается индекс массива
+     */
     public void startCell(int i, int j) {
         startI = i;
         startJ = j;
     }
 
+    /**
+     * конечная точка пути
+     * @param i в параметр передается индекс массива
+     * @param j в параметр передается индекс массива
+     */
     public void endCell(int i, int j) {
         endI = i;
         endJ = j;
     }
 
+    /**
+     *
+     * @param current
+     * @param t
+     * @param cost
+     */
     public void updateCostIfNeeded(Cell current, Cell t, int cost) {
         if (t == null || closedCells[t.i][t.j])
             return;
@@ -77,6 +103,10 @@ public class AStar {
         }
     }
 
+    /**
+     * Метод процесса поиска путь для А* алгоритма
+     *
+     */
     public void process() {
         //add the start location to open list
         openCells.add(grid[startI][startJ]);
@@ -140,6 +170,12 @@ public class AStar {
 
     }
 
+    /**
+     * метод, который выводит етку на экран
+     * SO - начальная точка
+     * DE - конечная точка
+     * BL - это блок, через который нельзя проложить путь
+     */
     public void display() {
         System.out.println("Grid: ");
 
@@ -158,6 +194,10 @@ public class AStar {
         System.out.println();
     }
 
+    /**
+     * выводит на экран "стоимость" шага, которую нужно потратить, чтобы перейти от одной клетки
+     * к другой и в конечном итоге достигнуть конца пути
+     */
     public void displayScores() {
         System.out.println("\n Scores for cell:");
 
@@ -172,6 +212,11 @@ public class AStar {
         System.out.println();
     }
 
+    /**
+     * выводит на экран Path - самый короткий путь от конца пути до его начала
+     * метод еще выводит конечный результат сетки
+     * X - означает, что путь должен быть проделан через данную клетку
+     */
     public void displaySolution() {
         if (closedCells[endI][endJ]) {
             //we track back the path
